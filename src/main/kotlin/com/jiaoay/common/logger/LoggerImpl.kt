@@ -66,9 +66,9 @@ class LoggerImpl : Logger {
                 return fileName
             }
             if (lineNumber <= 0) {
-                return "${fileName}.${methodName}"
+                return "$fileName.$methodName"
             }
-            return "${fileName}.${methodName}($lineNumber)"
+            return "$fileName.$methodName($lineNumber)"
         } catch (e: Exception) {
             e.printStackTrace()
         }

@@ -1,0 +1,34 @@
+subprojects {
+    getProject().afterEvaluate {
+
+        if (!getProject().file("build.gradle").exists() && !getProject().file("build.gradle.kts").exists()) {
+            return
+        }
+
+        getProject().apply plugin: 'com.diffplug.spotless'
+
+        spotless {
+            java{
+                target 'src/*/java/**/*.java', 'src/*/kotlin/**/*.java'
+                googleJavaFormat()
+
+                trimTrailingWhitespace()
+                endWithNewline()
+            }
+
+            kotlin {
+                target 'src/*/java/**/*.kt', 'src/*/kotlin/**/*.kt'
+                ktlint()
+
+                trimTrailingWhitespace()
+                endWithNewline()
+            }
+
+            format 'misc', {
+                target '**/*.gradle', '**/*.md', '**/.gitignore'
+                trimTrailingWhitespace()
+                endWithNewline()
+            }
+        }
+    }
+}

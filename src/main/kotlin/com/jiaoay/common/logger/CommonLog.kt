@@ -1,7 +1,5 @@
 package com.jiaoay.common.logger
 
-import android.util.Log
-
 object CommonLog {
     var logger: Logger = LoggerImpl()
 
